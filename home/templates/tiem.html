@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<div class="container">
+<table class="table table-striped">
+  <thead class="thead-dark">
+      <tr>
+        <th scope="col">Người tiêm</th>
+        <th scope="col">Ngày tiêm</th>
+        <th scope="col">Loại vắc xin</th>
+        <th scope="col">Tên Bệnh</th>
+        <th scope="col">Phản ứng sau tiêm</th>
+        <th scope="col">Ngày hẹn tiêm</th>
+        <th scope="col">Địa chỉ tiêm</th>
+        <th><a class="btn btn-success" href="{% url 'add_tiem' %}">Thêm</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if user.is_authenticated %}
+      {%for vacc in vac %}
+      <tr>
+        <td>{{vacc.canhan}}</td>
+        <td>{{vacc.ngay_tiem|date:"d-m-Y"}}</td>
+        <td>{{vacc.ten_vac}}</td>
+        <td>{{vacc.ten_benh}}</td>
+        <td>{{vacc.phan_ung}}</td>
+        <td>{{vacc.ngay_hen|date:"d-m-Y"}}</td>
+        <td>{{vacc.dia_chi}}</td>
+        <td><a class="btn btn-success" href="{% url 'edit_tiem' vacc.id %}">Sửa thông tin</a></td>
+        <td><a class="btn btn-success" style="background-color: #FF0000;" href="{% url 'delete_tiem' vacc.id %}">Xóa</a></td>
+        
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </nav>
+    
+  </table>
+</div>
+{% endblock main_content %}

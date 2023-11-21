@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-body">
+        <form class="row g-3" method="POST" action = "{% url 'tk_benh' %}" enctype= "multipart/form-data" >
+          {% csrf_token %}
+            
+          <table class="table table-borderless">
+            
+              <tbody>
+                <tr>
+                  <th scope="row"><label class="form-label fs-5"><b>Khoảng Thời gian</b></label></th>
+                  <td>
+                    <input type="date" class="form-control" name="ngaybd">
+                  </td>
+                  <td>
+                    <input type="date" class="form-control" name="ngaykt">
+                  </td>
+                
+                </tr>
+                {% comment %} <tr>
+                  <th scope="row"><label class="form-label fs-5"><b>Nhóm</b></label></th>
+                  <td>
+                    <select name="tieude" class="form-select">
+                      <option  value="1">Bệnh</option>
+                      <option  value="2">Tiêm ngừa</option>
+                    </select>
+                  </td>
+                </tr> {% endcomment %}
+
+              
+              </nav>
+              
+          </table>
+          <center  class="col-12">
+            <button type="submit" class="btn btn-primary">Thống kê</button>
+          </center>
+        </form>
+      </div></div></div>
+
+
+    <h3 class="text-center mt-5" scope="col">Kết quả thống kế từ {{ngaybd}} đến {{ngaykt}}</h3>
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Mối quan hệ</th>
+            <th scope="col">Tên cá nhân</th>
+            <th scope="col">Địa chỉ Khám</th>
+            <th scope="col">Tên Bệnh</th>
+            <th scope="col">Ngày khám bệnh</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for h in health %}
+          <tr>
+            <td>{{h.ma_canhan.get_qhe_display}}</td>
+            <th>{{h.ma_canhan.ten}}</th>
+            <td>{{h.diachi}}</td>
+            <td>{{h.ma_benh.ten_benh}}</td>
+            <th>{{h.ngay|date:"d-m-Y"}}</th>
+            <td><a class="btn btn-success" href="{% url 'detail_health' h.id %}">Chi tiết</a></td>
+            
+            
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+{% endblock main_content %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+      <div class="container">
+        <div class="card mt-5">
+          <div class="card-body">
+            <div class ="row justify-content-around">
+        <form class="row g-3" method="post" enctype= "multipart/form-data" >
+          {% if user.is_authenticated %}
+          {% csrf_token %}
+                
+              <table class="table table-borderless">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" class="fs-4">Thông tin</th>
+                      <th scope="col" class="fs-4">Thêm</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if user.is_authenticated %}
+                    <tr>
+                      <th scope="row">Họ và Tên người tiêm</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          <select name="ten"class="form-select"  aria-label="Example select with button addon">
+                            <option selected >Chọn tên người tiêm</option>
+                            {% for i in personals %}
+                            <option >{{i.ten}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </td>
+                    
+                    </tr>
+                    <tr>
+                      <th scope="row">Tên vắc xin</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.ten_vac}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">Tên bệnh</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.ten_benh}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Ngày tiêm</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.ngay_tiem}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Ngày tiêm tiếp theo</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.ngay_hen}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Phản ứng sau tiêm</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.phan_ung}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Địa chỉ tiêm</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.dia_chi}}
+                        </div>
+                      </td>
+    
+                    </tr>
+    
+                    {% endif %}
+                  </nav>
+                  
+                </table>
+    
+                <div class="text-center ">
+                  <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+    
+            </form>
+            {%endif%}
+        </form>
+          {% comment %} {% if img_obj %}
+          <h3>Succesfully uploaded : {{img_obj.anh}}</h3>
+          <img src="{{ img_obj.ImageURL}}" alt="connect" style="max-height:300px">
+          {% endif %} {% endcomment %}
+        </div>
+      </div></div></div>
+        <script src="" async defer></script>
+    </body>
+</html>
+{% endblock main_content %}

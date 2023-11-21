@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+      <div class="container">
+        <div class="card mt-5">
+          <div class="card-body">
+            <div class ="row justify-content-around">
+              <h3 class="text-center" scope="col">Thêm thông tin </h3>
+        <form class="row g-3" method="post" enctype= "multipart/form-data" >
+          {% csrf_token %}
+            
+          <table class="table table-borderless">
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="fs-4">Thông tin</th>
+                  <th scope="col"class="fs-4" >Thêm</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if user.is_authenticated %}
+                <tr>
+                  <th scope="row">Họ và Tên</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.ten}}
+                    </div>
+                  </td>
+                
+                </tr>
+                <tr>
+                  <th scope="row">Giới tính</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.gioitinh}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Năm sinh</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.namsinh}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Số điện thoại</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.sdt}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Địa chỉ Email</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.email}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thẻ bảo hiểm</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.thebh}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Mối quan hệ</th>
+                  <td>
+                    <div class="input-group mb-3">
+                        {{form.qhe}}
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Ảnh</th>
+                  <td>
+                    <div class="input-group mb-3">
+                      {{form.anh}}
+                    </div>
+                  </td>
+
+                </tr>
+
+                {% endif %}
+              </nav>
+              
+            </table>
+
+            <div class="text-center ">
+              <button type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+
+        </form>
+        {% comment %} {% if img_obj %}
+        <h3>Succesfully uploaded : {{img_obj.anh}}</h3>
+        <img src="{{ img_obj.ImageURL}}" alt="connect" style="max-height:300px">
+        {% endif %} {% endcomment %}
+      </div>
+    </div></div></div>
+      <script src="" async defer></script>
+    </body>
+</html>
+{% endblock main_content %}

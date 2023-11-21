@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        
+
+    </head>
+    <body>
+        <div class="container">
+          <div class="card mt-4">
+            <div class="card-body">
+            <div class ="row justify-content-around">
+              <h3 class="text-center" scope="col">Thêm thông tin về lần khám </h3>
+
+            <form class="row g-3" method="post" enctype= "multipart/form-data" >
+              {% csrf_token %}
+                
+              <table class="table table-borderless">
+                <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" class="fs-3">Thông tin</th>
+                      <th scope="col" class="fs-3">Thêm</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if user.is_authenticated %}
+                    <tr>
+                      <th scope="row">Tên bệnh</th>
+                      <td>
+                        <div class="input-group mb-3">
+                            {{form.ma_benh}}
+                        </div>
+                      </td>
+                    
+                    </tr>
+                    <tr>
+                      <th scope="row">Địa chỉ khám</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.diachi}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Ngày khám</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.ngay}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                    <tr>
+                      <th scope="row">Tên bác sĩ</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.tenbs}}
+                        </div>
+                      </td>
+    
+                    </tr>
+                  
+                    <tr>
+                      <th scope="row">Ảnh toa thuốc</th>
+                      <td>
+                        <div class="input-group mb-3">
+                          {{form.anh}}
+                        </div>
+                      </td>
+    
+                    </tr>
+    
+                    {% endif %}
+                  </nav>
+                  
+                </table>
+    
+                <div class="text-center ">
+                  <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+    
+      </form></div></div></div></div>
+    </body>
+</html>
+{% endblock main_content %}

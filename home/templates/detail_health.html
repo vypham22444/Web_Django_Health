@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+
+{%for health in healths %}
+<div class="container">
+<h3 scope="col">Họ và Tên: <td>{{health.ma_canhan}}</td></h3>
+<h5 scope="col">Năm sinh: {{health.ma_canhan.namsinh|date:"d-m-Y"}}</h5>
+<h5 scope="col">Giới Tính: {{health.ma_canhan.gioitinh}}</h5>
+<h5 scope="col">Số điện thoại: {{health.ma_canhan.sdt}}</h5>
+<h5 scope="col">Số thẻ bảo hiểm: {{health.ma_canhan.thebh}}</h5>
+<h5 scope="col">Chuẩn đoán: {{health.ma_benh.ten_benh}}</h5>
+<h5 scope="col">Địa chị khám: {{health.diachi}}</h5>
+<h5 scope="col">Tên bác sĩ: {{health.tenbs}}</h5>
+<h3 class="text-center" scope="col">Chỉ định dùng thuốc</h3>
+<form class="row g-3" method="post" enctype= "multipart/form-data" >
+  {% csrf_token %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tên gốc</th>
+      <th scope="col">Tên biệt dược</th>
+      <th scope="col">Liều lượng (lần/ngày)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pre in pre_details  %}
+    <tr>
+      <td>{{pre.ma_thuoc.ten_goc}}</td>
+      <td>{{pre.ma_thuoc.ten_bd}}</td>
+      <td>{{pre.lieuluong}}</td>
+    </tr>
+    {% endfor %}
+    <thead>
+      <tr>
+        <th scope="col">Tên thuốc</th>
+        <th scope="col">Liều lượng (lần/ngày)</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{me.ma_thuoc}}</td>
+        <td>{{me.lieuluong}}</td>
+        <td><button type="submit" class="btn btn-primary">Thêm</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</form>
+</div>
+{% endblock main_content %}

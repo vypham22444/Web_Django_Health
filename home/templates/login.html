@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+    <body>
+      <div class="container">
+        <div class="card mt-4">
+          <div class="card-body">
+        <section class="">
+            <div class="container py-5">
+              <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                  <img src="https://cdnstepup.r.worldssl.net/wp-content/uploads/2020/09/T%E1%BB%AB-v%E1%BB%B1ng-ti%E1%BA%BFng-Anh-v%E1%BB%81-s%E1%BB%A9c-kh%E1%BB%8Fe-1.jpg"
+                    class="img-fluid" alt="Phone image">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                  <form  method="post">
+                    {% csrf_token%}
+                    
+                    <div class="form-outline mb-4">
+                      <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                      <label class="form-label" for="form1Example13">Tên Đăng nhập</label>
+                    </div>
+          
+                   
+                    <div class="form-outline mb-4">
+                      <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                      <label class="form-label" for="form1Example23">Mật khẩu</label>
+                    </div>
+
+                    {% comment %} <a href="{% url 'change_mk' %}">Quên mật khẩu</a> {% endcomment %}
+          
+                    {% comment %} <div class="d-flex justify-content-around align-items-center mb-4">
+                      <!-- Checkbox -->
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                        <label class="form-check-label" for="form1Example3"> Remember me </label>
+                      </div>
+                      <a href="#!">Forgot password?</a>
+                    </div> {% endcomment %}
+          
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+          
+                
+                      {% for message in messages %}
+                  <div class="alert alert-danger" role="alert">
+                      {{message}}
+                  </div>
+                  {% endfor %}
+          
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        {% comment %} <div class="container">
+            <div class ="row justify-content-around">
+        <form class="col-md-6 bg-light p-3 my-3">
+            <h1 class="text-center text-uppercase h3 py-3">Đăng nhập</h1>
+            
+
+            <div class="form-groud">
+                <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+
+              <div class="form-groud">
+                <label for="exampleInputEmail1" class="form-label">Mật khẩu</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+                
+            
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                  </div> {% endcomment %}
+          {% comment %} </form>
+        </div> {% endcomment %}
+   
+            
+        <script src="" async defer></script>
+      </div></div></div>
+    </body>
+    {% endblock main_content %}

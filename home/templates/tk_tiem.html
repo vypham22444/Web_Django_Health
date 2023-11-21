@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-body">
+        <form class="row g-3" method="POST" action = "{% url 'tk_tiem' %}" enctype= "multipart/form-data" >
+          {% csrf_token %}
+            
+          <table class="table table-borderless">
+            
+              <tbody>
+                <tr>
+                  <th scope="row"><label class="form-label fs-5">Khoảng Thời gian</label></th>
+                  <td>
+                    <input type="date" class="form-control" name="ngaybd">
+                  </td>
+                  <td>
+                    <input type="date" class="form-control" name="ngaykt">
+                  </td>
+                
+                </tr>
+
+              
+              </nav>
+              
+          </table>
+          <center  class="col-12">
+            <button type="submit" class="btn btn-primary">Thống kê</button>
+          </center>
+        </form>
+      </div></div></div>
+
+
+    <h3 class="text-center mt-5" scope="col">Kết quả thống kế từ {{ngaybd}} đến {{ngaykt}}</h3>
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Tên cá nhân</th>
+            <th scope="col">Tên vắc xin</th>
+            <th scope="col">Tên bệnh</th>
+            <th scope="col">Ngày tiêm</th>
+            <th scope="col">Ngày hẹn tiêm lần sau</th>
+            <th scope="col">Địa chỉ Tiêm</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for v in vac %}
+          <tr>
+            <th>{{v.canhan.ten}}</th>
+            <th>{{v.ten_vac}}</th>
+            <td>{{v.ten_benh}}</td>
+            <td>{{v.ngay_tiem|date:"d-m-Y"}}</td>
+            <th>{{v.ngay_hen|date:"d-m-Y"}}</th>
+            <td>{{v.dia_chi}}</td>
+            
+            
+            
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+{% endblock main_content %}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html >
+    <head >
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+        <!-- js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+        
+        <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" > </script > 
+<script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" > </script >
+        
+        <title></title>
+
+        <style type="text/css">
+          .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+        
+        header {
+            flex-shrink: 0;
+        }
+        .body{
+            flex-grow: 1;
+            overflow: auto;
+            min-height: 2em;
+        }
+        footer{
+            flex-shrink: 0;
+            background-color:  rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            color: white;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding-bottom: 10px;
+			      margin-top: 15px;
+
+        }
+        </style>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body stype="height: 100%;" >
+        <!--menu-->
+        
+        <nav class="navbar navbar-expand-lg " style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <a class="navbar-brand" href="{% url 'home' %}"><b>Home</b></a>
+              <a class="navbar-brand" href="{% url 'tiem' %}"><b>Tiêm chủng</b></a>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle fs-5" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>Danh mục</b>
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_benh' %}">Bệnh</a></li>
+                        
+                        
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'add_benhtiem' %}">Bệnh Tiêm Ngừa</a></li>
+                      </ul>
+                        
+                      
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle fs-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>Thống kê</b>
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'tk_benh' %}">Bệnh</a></li>
+                        
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'tk_tiem' %}">Tiêm ngừa</a></li>
+                      </ul>
+                        
+                      
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+
+              
+              
+              <form class="d-flex" role="search" method = "post" action = "{% url 'tk' %}">
+                {% csrf_token %}
+              <div class="input-group">
+                <select name="tieude"class="form-select"  aria-label="Example select with button addon">
+                  <option value="1" >Chọn tiêu chí tìm kiếm....</option>
+                  <option  value="1">Bệnh</option>
+                  <option  value="2">Thuốc</option>
+                  <option value="3">Tên</option>
+                  <option value="4">Vacxin</option>
+                </select>
+                &ensp;
+                
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name = "tk_ed">
+               
+
+              </div>
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mr-5"> 
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link">Hi, {{request.user}}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Đăng xuất</a>
+                  </li>
+                  {% else%}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Đăng kí</a>
+                  </li>
+                  {% endif%}
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!--menu-->
+
+          <!--main body-->
+          {% block main_content %}{% endblock main_content %}
+        
+          <footer id="footer">
+            <div id="footer-inner">
+              <p>Phạm Hoàng Phương Vy</p>
+              <div class="clr">Số điện thoại: 0796842836;       Email:vyb1812323@student.ctu.edu.vn</div>
+              
+            </div>
+          </footer>
+       
+
+
+
+
+    </body>
+</html>

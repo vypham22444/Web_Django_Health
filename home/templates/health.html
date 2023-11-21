@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<div class="container">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ngày khám</th>
+        <th scope="col">Địa chỉ</th>
+        <th scope="col">Tên Bệnh</th>
+        <th><th><a class="btn btn-success" href="{% url 'add_health' id %}">Thêm</a></th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for health in healths %}
+      <tr>
+        <th>{{health.ngay|date:"d-m-Y"}}</th>
+        <td>{{health.diachi}}</td>
+        
+        <td>{{health.ma_benh.ten_benh}}</td>
+        <td><a class="btn btn-success" href="{% url 'detail_health' health.id %}">Chi tiết</a></td>
+        <td><a class="btn btn-success" href="{% url 'edit_health' id health.id %}">Sửa thông tin</a></td>
+        <td><a class="btn btn-success" style="background-color: #FF0000;" href="{% url 'delete_health' id health.id %}">Xóa</a></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+{% endblock main_content %}

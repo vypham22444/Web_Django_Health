@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %} 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class="container">
+          <div class="card mt-4">
+            <div class="card-body">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <form class="d-flex" method="post" enctype= "multipart/form-data" action = "{% url 'add_benhtiem' %}" >
+                    {% csrf_token %}
+                        <label for="inputPassword4" class="fs-4"><b>Thêm các bệnh có thể phòng ngừa bằng vắc-xin</b></label>
+
+                        <div class="input-group mb-3">
+                            <input type="text" name="tenbenh" class="form-control" placeholder="Tên bệnh" aria-label="tên bệnh" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Thêm</button>
+                          </div>
+                  </form>
+                  <tr>
+                    <th scope="col" class="fs-4">Tên bệnh</th>
+
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if user.is_authenticated %}
+                  {%for b in benh %}
+                  <tr>
+                    <th>{{b.ten_benh}}</th>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </nav>
+                
+              </table>
+            </div></div></div>
+      
+        <script src="" async defer></script>
+    </body>
+</html>
+{% endblock main_content %}
